@@ -1,0 +1,17 @@
+!!!
+%html.no-js{lang: "en", dir: "ltr"}
+  %head
+    %meta{charset: "utf-8"}
+    %meta{'http-equiv' => "x-ua-compatible", content: "ie=edge"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %title= locals[:title] || 'FluffyPaws'
+    %link{href: url("css/foundation.css"), rel: "stylesheet", type: "text/css"}
+    %link{href: url("css/app.css"), rel: "stylesheet", type: "text/css"}
+
+  %body
+    =yield
+
+    %script{src: "js/vendor/jquery.js"}
+    %script{src: "js/vendor/what-input.js"}
+    %script{src: "js/vendor/foundation.js"}
+    %script{src: "js/app.js"}

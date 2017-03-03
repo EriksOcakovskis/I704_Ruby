@@ -1,0 +1,24 @@
+.row
+  .large-12.columns
+    %form{action: '/login', method: 'post'}
+      .row
+        .large-4.medium-4.columns
+          %label{for: 'user-name'} Login
+          %input#user-name{type: 'text', placeholder: 'Somebody', name:'user'}
+
+          %label{for: 'user-password'} Password
+          %input#user-password{type: 'password', placeholder: 'Password', name:'password'}
+
+          %input.button.expanded{type: 'submit'}
+
+          %p
+            %a.button.expanded{type: 'submit', href: '/logout'} Log Out
+
+.row
+  .large-12.columns
+    %p= session.inspect
+
+-if locals[:username]
+  .row
+    .large-12.columns
+      %p= locals[:username]
