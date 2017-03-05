@@ -35,4 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.10"
   spec.add_dependency "sinatra"
   spec.add_dependency 'haml'
+  spec.add_dependency 'pg'
+  spec.add_dependency 'sequel'
 end
