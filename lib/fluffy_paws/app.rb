@@ -6,6 +6,8 @@ module FluffyPaws
       set :session_secret, Helpers.load_secret
     end
 
+    DB = Sequel.connect(ENV.fetch('DATABASE_URL'))
+
     get '/' do
       cow = [1, 2, 4]
       title = 'Holy Smokes!'
