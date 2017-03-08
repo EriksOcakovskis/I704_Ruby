@@ -20,4 +20,18 @@ class FluffyPawsTest < Minitest::Test
     get '/'
     assert_includes last_response.body, 'Holy Smokes!'
   end
+
+  def test_logout_redirects_to_index
+    get '/logout'
+    follow_redirect!
+    assert last_response.ok?
+    assert_equal 'http://example.org/', last_request.url
+  end
+
+  def test_login_redirects_to_index
+    post '/login'
+    follow_redirect!
+    assert last_response.ok?
+    assert_equal 'http://example.org/', last_request.url
+  end
 end
