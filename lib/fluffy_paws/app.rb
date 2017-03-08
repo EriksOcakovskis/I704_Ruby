@@ -11,10 +11,12 @@ module FluffyPaws
     get '/' do
       cow = [1, 2, 4]
       title = 'Holy Smokes!'
+      all_pcs = DB[:winuser].all
 
       context = {
         cow: cow,
-        title: title
+        title: title,
+        all_pcs: all_pcs
       }
 
       unless session[:username].nil?
@@ -38,8 +40,16 @@ module FluffyPaws
     end
 
     post '/json' do
+      ds = DB[:winuser]
       request.body.rewind
-      puts JSON.parse request.body.read
+      req_data = JSON.parse request.body.read
+      data_kind = req_data['pc_data']['kind']
+      pc_name = req_data['pc_data']['data']['Name']
+
+      if data_kind == 'PC info'
+        pc_name = 'PC name empty' if pc_name == ''
+        ds.insert({pc_name: pc_name, malware_id: 'SPAM'})
+      end
     end
   end
 end
