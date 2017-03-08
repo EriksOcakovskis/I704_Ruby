@@ -38,4 +38,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'pg'
   spec.add_dependency 'sequel_pg'
   spec.add_dependency 'sequel'
+  spec.add_dependency 'rack-test'
 end
