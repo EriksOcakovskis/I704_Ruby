@@ -46,8 +46,6 @@ module FluffyPaws
       request.body.rewind
       req_data = JSON.parse request.body.read
 
-      puts req_data
-
       data_kind = req_data['pc_data']['kind']
       pc_name = req_data['pc_data']['data']['Name']
 
@@ -59,12 +57,6 @@ module FluffyPaws
       # response.each  do |i|
       #   puts i
       # end
-    end
-
-    post '/logs' do
-      request.body.rewind
-      req_data = JSON.parse request.body.read
-      puts req_data
     end
   end
 end
