@@ -30,6 +30,8 @@ module FluffyPaws
     end
 
     post '/login' do
+      # Interactions::Login.new(DB).run(username: params[:user],
+      #                                 password: params[:password])
       session[:username] = params[:user]
       redirect to('/')
     end
@@ -43,13 +45,18 @@ module FluffyPaws
       ds = DB[:winuser]
       request.body.rewind
       req_data = JSON.parse request.body.read
+
       data_kind = req_data['pc_data']['kind']
       pc_name = req_data['pc_data']['data']['Name']
 
       if data_kind == 'PC info'
         pc_name = 'PC name empty' if pc_name == ''
-        ds.insert({pc_name: pc_name, malware_id: 'SPAM'})
+        puts ds.insert(pc_name: pc_name, malware_id: 'SPAM')
       end
+
+      # response.each  do |i|
+      #   puts i
+      # end
     end
   end
 end
