@@ -1,6 +1,6 @@
-module FluffyPaws
-  class Helpers
-    def self.load_secret
+module Sinatra
+  module Helpers
+    def load_secret
       secret_path = File.expand_path('../../../.secret', __FILE__)
 
       if File.exist?(secret_path)
@@ -14,5 +14,19 @@ module FluffyPaws
       end
       secret
     end
+
+    def authorized?
+      session[:user_id]
+    end
+
+    def authorize!
+      redirect '/login' unless authorized?
+    end
+
+    def logout!
+      session[:user_id] = nil
+    end
   end
+
+  register Helpers
 end

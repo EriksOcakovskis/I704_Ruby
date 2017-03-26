@@ -1,14 +1,16 @@
 module FluffyPaws
   class App < Sinatra::Base
     enable :sessions
+    register Sinatra::Helpers
 
     configure do
-      set :session_secret, Helpers.load_secret
+      set :session_secret, load_secret
     end
 
     DB = Sequel.connect(ENV.fetch('DATABASE_URL'))
 
     get '/' do
+      authorize!
       cow = [1, 2, 4]
       title = 'Holy Smokes!'
       all_pcs = DB[:winuser].all
@@ -29,6 +31,7 @@ module FluffyPaws
     end
 
     get '/login' do
+      redirect to('/') if authorized?
       if session[:login_error]
         @error = session[:login_error]
         session[:login_error] = nil
@@ -51,7 +54,7 @@ module FluffyPaws
     end
 
     get '/logout' do
-      session.clear
+      logout!
       redirect to('/login')
     end
 
