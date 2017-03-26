@@ -23,22 +23,36 @@ module FluffyPaws
         username = session[:username]
 
         context.store(:username, username)
-        puts context
       end
 
       haml :index, locals: context
     end
 
+    get '/login' do
+      if session[:login_error]
+        @error = session[:login_error]
+        session[:login_error] = nil
+      end
+      haml :login
+    end
+
     post '/login' do
-      # Interactions::Login.new(DB).run(username: params[:user],
-      #                                 password: params[:password])
-      session[:username] = params[:user]
-      redirect to('/')
+      login = Interactions::Login.new(DB)
+      login.run(username: params[:user],
+                password: params[:password])
+
+      if login.session
+        session[:user_id] = login.session
+        redirect to('/')
+      else
+        session[:login_error] = login.error
+        redirect to('/login')
+      end
     end
 
     get '/logout' do
       session.clear
-      redirect to('/')
+      redirect to('/login')
     end
 
     post '/json' do
@@ -53,10 +67,6 @@ module FluffyPaws
         pc_name = 'PC name empty' if pc_name == ''
         puts ds.insert(pc_name: pc_name, malware_id: 'SPAM')
       end
-
-      # response.each  do |i|
-      #   puts i
-      # end
     end
   end
 end
