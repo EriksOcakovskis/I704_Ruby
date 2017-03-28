@@ -29,13 +29,6 @@ module FluffyPaws
              end
         pw == password
       end
-
-      def save(db)
-        pw = password_to_hash(@password_hash)
-        db[:user].insert(user_name: @user_name,
-                         email: @email,
-                         password_hash: pw)
-      end
     end
   end
 end

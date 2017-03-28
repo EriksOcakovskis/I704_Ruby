@@ -28,7 +28,8 @@ module FluffyPaws
     end
 
     post '/register' do
-      register = Interactions::Register.new(DB)
+      user_repository = Repositories::User.new(DB)
+      register = Interactions::Register.new(user_repository)
       register.run(user_name: params[:user_name],
                    email: params[:email],
                    password: params[:password])
@@ -51,7 +52,8 @@ module FluffyPaws
     end
 
     post '/login' do
-      login = Interactions::Login.new(DB)
+      user_repository = Repositories::User.new(DB)
+      login = Interactions::Login.new(user_repository)
       login.run(username: params[:user],
                 password: params[:password])
 
