@@ -12,10 +12,12 @@ module FluffyPaws
 
       def run(params)
         user_email_check = @db[:user].where(email: params[:email]).all
+        puts "lol#{user_email_check}"
         user_name_check = @db[:user].where(user_name: params[:user_name]).all
-        if user_email_check
+        puts user_name_check
+        if user_email_check != []
           @error = 'This e-mail already exists, please chose another.'
-        elsif user_name_check
+        elsif user_name_check != []
           @error = 'This user name already exists, please chose another.'
         else
           user = Models::User.new(params[:user_name],
