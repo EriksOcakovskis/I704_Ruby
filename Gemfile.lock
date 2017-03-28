@@ -6,6 +6,7 @@ PATH
       haml
       pg
       rack-test
+      sendgrid-ruby
       sequel
       sequel_pg
       sinatra
@@ -24,6 +25,9 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.5.0)
+    ruby_http_client (3.0.1)
+    sendgrid-ruby (4.0.8)
+      ruby_http_client (~> 3.0.1)
     sequel (4.44.0)
     sequel_pg (1.6.17)
       pg (>= 0.8.0)

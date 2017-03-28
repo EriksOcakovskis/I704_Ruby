@@ -41,4 +41,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sequel'
   spec.add_dependency 'rack-test'
   spec.add_dependency 'bcrypt'
+  spec.add_dependency 'sendgrid-ruby'
 end

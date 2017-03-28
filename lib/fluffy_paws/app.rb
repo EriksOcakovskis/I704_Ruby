@@ -11,9 +11,11 @@ module FluffyPaws
 
     get '/' do
       authorize!
+      token_repository = Repositories::LoginToken.new(DB)
+      token_repository.delete_login_token_by_user_id session[:user_id]
       @all_pcs = DB[:winuser].all
 
-      @username = session[:username] unless session[:username].nil?
+      @username = session[:user_id] unless session[:user_id].nil?
 
       haml :index
     end
@@ -62,6 +64,39 @@ module FluffyPaws
         redirect to('/')
       else
         session[:login_error] = login.error
+        redirect to('/login')
+      end
+    end
+
+    get '/email-login' do
+      redirect to('/') if authorized?
+      @message = session[:email_login_message]
+      session[:email_login_message] = nil
+      haml :email_login
+    end
+
+    post '/email-login' do
+      user_repository = Repositories::User.new(DB)
+      token_repository = Repositories::LoginToken.new(DB)
+      mailer = Mailers::TokenMailer.new
+      email_login = Interactions::LogInWithEmail.new(user_repository,
+                                                     token_repository,
+                                                     mailer)
+      email_login.run(email: params[:email])
+      session[:email_login_message] = email_login.message
+      redirect to('/email-login')
+    end
+
+    get '/login/:name' do
+      redirect to('/') if authorized?
+      token_repository = Repositories::LoginToken.new(DB)
+      auth_token = Interactions::AuthorizeToken.new(token_repository)
+      auth_token.run(token: params[:name])
+      if auth_token.session
+        session[:user_id] = auth_token.session
+        redirect to('/')
+      else
+        session[:login_error] = auth_token.error
         redirect to('/login')
       end
     end

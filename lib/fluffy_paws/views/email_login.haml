@@ -1,0 +1,20 @@
+.row
+  .large-12.columns
+    %form{action: '/email-login', method: 'post'}
+      .row
+        .large-4.medium-4.columns
+          %label{for: 'email'} E-mail
+          %input#email{type: 'email', placeholder: 'somebody@somebody.com', name:'email'}
+
+          %input.button.expanded{type: 'submit', value: 'Send'}
+      -if @message
+        %p= @message
+    .row
+      .large-4.medium-4.columns
+        %p Have password?
+        %a.button.expanded{type: 'submit', href: '/login'} Login
+    .row
+      .large-4.medium-4.columns
+        %p Are you new?
+        %a.button.expanded{type: 'submit', href: '/register'} Register
+

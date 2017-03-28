@@ -12,6 +12,12 @@
           %input.button.expanded{type: 'submit', value: 'Login'}
       -if @error
         %p= @error
+
+    .row
+      .large-4.medium-4.columns
+        %p Forgot password?
+        %a.button.expanded{type: 'submit', href: '/email-login'} Get token
+
     .row
       .large-4.medium-4.columns
         %p Are you new?
