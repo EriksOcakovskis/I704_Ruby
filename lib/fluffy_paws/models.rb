@@ -1,7 +1,7 @@
 module FluffyPaws
   module Models
     class User
-      def initialize(id, user_name, email, password_hash)
+      def initialize(user_name, email, password_hash, id = nil)
         @id = id
         @user_name = user_name
         @email = email
@@ -28,6 +28,13 @@ module FluffyPaws
                false
              end
         pw == password
+      end
+
+      def save(db)
+        pw = password_to_hash(@password_hash)
+        db[:user].insert(user_name: @user_name,
+                         email: @email,
+                         password_hash: pw)
       end
     end
   end

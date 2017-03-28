@@ -14,10 +14,10 @@ module FluffyPaws
         if ds_result.empty?
           Models::User.dummy_user
         else
-          Models::User.new(ds_result[0][:id],
-                           ds_result[0][:user_name],
+          Models::User.new(ds_result[0][:user_name],
                            ds_result[0][:email],
-                           ds_result[0][:password_hash])
+                           ds_result[0][:password_hash],
+                           ds_result[0][:id])
         end
       end
 

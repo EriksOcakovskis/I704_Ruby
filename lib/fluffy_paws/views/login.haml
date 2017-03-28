@@ -3,8 +3,6 @@
     %form{action: '/login', method: 'post'}
       .row
         .large-4.medium-4.columns
-          -if @error
-            %p= @error
           %label{for: 'user-name'} Login
           %input#user-name{type: 'text', placeholder: 'Somebody', name:'user'}
 
@@ -12,3 +10,9 @@
           %input#user-password{type: 'password', placeholder: 'Password', name:'password'}
 
           %input.button.expanded{type: 'submit'}
+      -if @error
+        %p= @error
+    .row
+      .large-4.medium-4.columns
+        %p Are you new?
+        %a.button.expanded{type: 'submit', href: '/register'} Register

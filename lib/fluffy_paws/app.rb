@@ -30,6 +30,29 @@ module FluffyPaws
       haml :index, locals: context
     end
 
+    get '/register' do
+      redirect to('/') if authorized?
+      if session[:register_error]
+        @error = session[:register_error]
+        session[:register_error] = nil
+      end
+      haml :register
+    end
+
+    post '/register' do
+      register = Interactions::Register.new(DB)
+      register.run(user_name: params[:user_name],
+                   email: params[:email],
+                   password: params[:password])
+      if register.session
+        session[:user_id] = register.session
+        redirect to('/')
+      else
+        session[:register_error] = register.error
+        redirect to('/register')
+      end
+    end
+
     get '/login' do
       redirect to('/') if authorized?
       if session[:login_error]
