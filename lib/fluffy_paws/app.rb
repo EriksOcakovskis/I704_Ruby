@@ -11,23 +11,11 @@ module FluffyPaws
 
     get '/' do
       authorize!
-      cow = [1, 2, 4]
-      title = 'Holy Smokes!'
-      all_pcs = DB[:winuser].all
+      @all_pcs = DB[:winuser].all
 
-      context = {
-        cow: cow,
-        title: title,
-        all_pcs: all_pcs
-      }
+      @username = session[:username] unless session[:username].nil?
 
-      unless session[:username].nil?
-        username = session[:username]
-
-        context.store(:username, username)
-      end
-
-      haml :index, locals: context
+      haml :index
     end
 
     get '/register' do

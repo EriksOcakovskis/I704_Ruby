@@ -3,13 +3,13 @@
     %form{action: '/login', method: 'post'}
       .row
         .large-4.medium-4.columns
-          %label{for: 'user-name'} Login
+          %label{for: 'user-name'} Username
           %input#user-name{type: 'text', placeholder: 'Somebody', name:'user'}
 
           %label{for: 'user-password'} Password
           %input#user-password{type: 'password', placeholder: 'Password', name:'password'}
 
-          %input.button.expanded{type: 'submit'}
+          %input.button.expanded{type: 'submit', value: 'Login'}
       -if @error
         %p= @error
     .row

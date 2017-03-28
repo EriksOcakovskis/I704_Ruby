@@ -10,10 +10,10 @@
   .large-12.columns
     %p= session.inspect
 
--if locals[:username]
+-if @username
   .row
     .large-12.columns
-      %p= locals[:username]
+      %p= @username
 
--locals[:all_pcs].each do |i|
+-@all_pcs.each do |i|
   %p= i
