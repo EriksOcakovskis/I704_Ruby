@@ -2,11 +2,11 @@
 
 A website using Sinatra for Estonian IT College I704 class.
 
-A live demo can be found [Here](https://tranquil-caverns-83807.herokuapp.com)
+A live demo can be found [here](https://tranquil-caverns-83807.herokuapp.com).
 
 ## Installation
 
-Gem is not available on RubyGems.org.
+Gem is not available on [RubyGems.org](https://rubygems.org).
 
 Add this line to your application's Gemfile:
 
@@ -16,33 +16,46 @@ gem 'fluffy_paws', git: 'git@github.com:EriksOcakovskis/I704_Ruby.git'
 
 And then execute:
 
-    $ bundle
+```bash
+bundle
+```
 
 Or install it yourself as:
 
-    $ git clone git@github.com:EriksOcakovskis/I704_Ruby.git
-    $ cd I704_Ruby && gem build fluffy_paws.gemspec
-    $ gem install fluffy_paws-0.2.0.gem
+```bash
+git clone git@github.com:EriksOcakovskis/I704_Ruby.git
+cd I704_Ruby && gem build fluffy_paws.gemspec
+gem install fluffy_paws-0.2.0.gem
+```
 
 Then configure environment variables by executing (adjust parameters according to your environment):
 
-    echo export DATABASE_URL=\'postgres://localhost/my_db?user=some_user\'>> ~/.bash_profile
-    echo export SENDGRID_API_KEY=\'some_mail_api_key\'>> ~/.bash_profile
-    echo export SERVER_URL=\'http://localhost:8000\'>> ~/.bash_profile
+```bash
+echo export DATABASE_URL=\'postgres://localhost/my_db?user=some_user\'>> ~/.bash_profile
+echo export SENDGRID_API_KEY=\'some_mail_api_key\'>> ~/.bash_profile
+echo export SERVER_URL=\'http://localhost:8000\'>> ~/.bash_profile
+source ~/.bash_profile
+```
 
 ## Usage
 
 Before running app execute:
 
-    $ rake db:migrate
+```bash
+rake db:migrate
+```
 
 Run on local machine by executing:
 
-    $ rackup
+```bash
+rackup
+```
 
 Run on a server by executing something like this:
 
-    $ bundle exec rackup config.ru -p $PORT
+```bash
+bundle exec rackup config.ru -p $PORT
+```
 
 ## Development
 
