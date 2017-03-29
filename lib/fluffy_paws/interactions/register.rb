@@ -22,7 +22,15 @@ module FluffyPaws
         end
       end
 
+      def empty_check(params)
+        params.each do |_, j|
+          break if @error
+          @error = 'Please fill in the whole form' if j.empty?
+        end
+      end
+
       def run(params)
+        empty_check params
         duplicate_check params
         return false if @error
         user = Models::User.new(params[:user_name],
