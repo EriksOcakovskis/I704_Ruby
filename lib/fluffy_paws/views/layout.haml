@@ -5,13 +5,18 @@
     %meta{'http-equiv' => "x-ua-compatible", content: "ie=edge"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
     %title= @title || 'FluffyPaws'
-    %link{href: url("css/foundation.css"), rel: "stylesheet", type: "text/css"}
+    %link{href: url("css/foundation.min.css"), rel: "stylesheet", type: "text/css"}
     %link{href: url("css/app.css"), rel: "stylesheet", type: "text/css"}
 
   %body
+    .top-bar
+      .top-bar-title
+        %strong
+          %a.menu-text{href: '/'} Fluffy Paws
+    %br
     =yield
 
-    %script{src: "js/vendor/jquery.js"}
+    %script{src: "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"}
     %script{src: "js/vendor/what-input.js"}
-    %script{src: "js/vendor/foundation.js"}
+    %script{src: "js/vendor/foundation.min.js"}
     %script{src: "js/app.js"}

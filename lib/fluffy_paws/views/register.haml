@@ -1,21 +1,22 @@
 .row
-  .large-12.columns
+  .medium-6.medium-centered.large-4.large-centered.columns
     %form{action: '/register', method: 'post'}
-      .row
-        .large-4.medium-4.columns
-          %label{for: 'user-name'} Username
-          %input#user-name{type: 'text', placeholder: 'Somebody', name:'user_name'}
+      .row.column.log-in-form
+        %h4.text-center Create your Fluffy Paws Account
+        %label{for: 'user-name'} Username
+        %input#user-name{type: 'text', placeholder: 'Somebody', name:'user_name'}
 
-          %label{for: 'email'} E-mail
-          %input#email{type: 'email', placeholder: 'somebody@somebody.com', name:'email'}
+        %label{for: 'email'} E-mail
+        %input#email{type: 'email', placeholder: 'somebody@somebody.com', name:'email'}
 
-          %label{for: 'user-password'} Password
-          %input#user-password{type: 'password', placeholder: 'Password', name:'password'}
+        %label{for: 'user-password'} Password
+        %input#user-password{type: 'password', placeholder: 'Password', name:'password'}
 
-          %input.button.expanded{type: 'submit'}
-      -if @error
-        %p= @error
-    .row
-      .large-4.medium-4.columns
-        %p Already have an account?
-        %a.button.expanded{type: 'submit', href: '/login'} Login
+        -if @error
+          .alert.callout
+            %p= @error
+
+        %input.button.expanded{type: 'submit'}
+
+        %p.text-center
+          %a{href: '/login'} Already have an account?
