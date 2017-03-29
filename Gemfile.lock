@@ -1,15 +1,15 @@
 PATH
   remote: .
   specs:
-    fluffy_paws (0.1.0)
-      bcrypt
-      haml
-      pg
-      rack-test
-      sendgrid-ruby
-      sequel
-      sequel_pg
-      sinatra
+    fluffy_paws (0.2.0)
+      bcrypt (~> 3.0)
+      haml (~> 4.0)
+      pg (~> 0)
+      rack-test (~> 0)
+      sendgrid-ruby (~> 4.0)
+      sequel (~> 4.0)
+      sequel_pg (~> 1.0)
+      sinatra (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
