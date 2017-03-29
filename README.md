@@ -2,12 +2,16 @@
 
 A website using Sinatra for Estonian IT College I704 class.
 
+A live demo can be found [Here](https://tranquil-caverns-83807.herokuapp.com)
+
 ## Installation
+
+Gem is not available on RubyGems.org.
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'fluffy_paws'
+gem 'fluffy_paws', git: 'git@github.com:EriksOcakovskis/I704_Ruby.git'
 ```
 
 And then execute:
@@ -16,11 +20,29 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install fluffy_paws
+    $ git clone git@github.com:EriksOcakovskis/I704_Ruby.git
+    $ cd I704_Ruby && gem build fluffy_paws.gemspec
+    $ gem install fluffy_paws-0.2.0.gem
+
+Then configure environment variables by executing (adjust parameters according to your environment):
+
+    echo export DATABASE_URL=\'postgres://localhost/my_db?user=some_user\'>> ~/.bash_profile
+    echo export SENDGRID_API_KEY=\'some_mail_api_key\'>> ~/.bash_profile
+    echo export SERVER_URL=\'http://localhost:8000\'>> ~/.bash_profile
 
 ## Usage
 
-TODO: Write usage instructions here
+Before running app execute:
+
+    $ rake db:migrate
+
+Run on local machine by executing:
+
+    $ rackup
+
+Run on a server by executing something like this:
+
+    $ bundle exec rackup config.ru -p $PORT
 
 ## Development
 
